@@ -50,11 +50,14 @@ def dealer_card(a):
         if sum(a)>21:
             break
     return a   
- 
+def card_compare(a,b) :
+    if sum(a)>sum(b):
+        print
         
         
 play = input("Do you want to play blackjack, if yes then press y else press n")
-if play == "y":
+while play == "y":
+    f=0
     print(art.logo)
     user = []
     dealer = []
@@ -66,9 +69,17 @@ if play == "y":
     while card=="y":
         user= card_add(user)
         print("Users current hand:",user,"Current Total",sum(user))
+        if sum(user)>21:
+            print("You went over. You lose 😤")
+            f=1
+            break
         card= input("Type 'y' to get another card, type 'n' to pass:")
+        
     else:
-        print("Your final hand:",a,"Your Final score :",sum(a))
+        print("Your final hand:",user,"Your Final score :",sum(user))
         
     dealer=dealer_card(dealer) 
-    card_compare(user,dealer)   
+    if f==0:
+        card_compare(user,dealer) 
+        
+      
